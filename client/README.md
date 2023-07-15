@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+#
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Video Recommendation App
 
-## Available Scripts
+## Background
 
-In the project directory, you can run:
+Before you continue to final projects we have to make sure that you can meaningfully contribute to a technical project.
 
-### `npm start`
+This means that we need to be sure that you can create a Full Stack app.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Challenge
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+In this project you will be building a project that fulfills the following User Stories
 
-### `npm test`
+- As a user, I want to be able to view a list of all YouTube videos posted on the site
+- As a user, I want to be able to post videos that I like from YouTube to my website.
+- As a user, I want to be able to delete videos from the website that I no longer like.
+- As a user, I want to be able to watch the videos embedded in the website.
+- As a user, I want to be able to "Up Vote" a video if I like it.
+- As a user, I want to be able to "Down Vote" a video if I dislike.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You don't need to worry about storing the video content itself - we'll rely on YouTube for this.
 
-### `npm run build`
+## Levels
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This project is split into several levels that you should complete each week of the three week project.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+You can find each of the levels split into separate files, linked below.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Note:** Some of the levels are optional which means that you will build a working project without them. However, to make something really impressive you will need to complete as much as you can.
 
-### `npm run eject`
+### Week 1 - Front End
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- [Level 100](./100.md)
+  - A core version of the React front end of the app
+- [Level 199](./199.md) (Optional)
+  - Stretch goals for the front end if you have time
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Week 2 - Back End (without Database)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- [Level 200](./200.md)
+  - A core version of the Node + Express back end of the app
+- [Level 250](./250.md)
+  - Connect your Front End and Back End together
+- [Level 299](./299.md) (Optional)
+  - Stretch goals for the back end if you have time
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Week 3 - Back End (with Database)
 
-## Learn More
+- [Level 300](./300.md)
+  - Integrate the back end with a database
+- [Level 399](./399.md) (Optional)
+  - Stretch goals for the database if you have time
+- [Level 999](./999.md) (Optional)
+  - More optional goals for if you have time
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Sample Solution
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Here is an example solution of the Front End:
 
-### Code Splitting
+https://vid-rec2.netlify.app/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Note:** You can design the website to look however you like.
 
-### Analyzing the Bundle Size
+Here is an example solution for the Back End:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+https://video-rec.herokuapp.com
 
-### Making a Progressive Web App
+## Design
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You are welcome to use [Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/) or any other design framework to help you build this app.
