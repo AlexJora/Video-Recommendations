@@ -2,24 +2,21 @@ import React from "react";
 import AddAndSearch from "./components/AddAndSearch";
 import AllVideos from "./components/AllVideos";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
   const [videos, setVideos] = useState([]);
   useEffect(() => {
-    const url = `http://localhost:5000/`;
-    fetch(url)
+    axios
+      .get(`http://localhost:5000/`)
       .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          return res.json();
-        }
-      })
-      .then((videos) => {
+        const videos = res.data;
         console.log(videos);
         setVideos(videos);
       })
       .catch((err) => console.log(err));
   }, []);
+
   const handleDelete = (id) => {
     const newData = videos.filter((elem) => elem.id !== id);
     setVideos(newData);
