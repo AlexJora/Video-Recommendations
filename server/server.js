@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
 app.use(express.json());
-const videos = require("../client/src/exampleresponse.json");
+const videos = require("./exampleresponse.json");
+const cors = require("cors"); //allowing other domains to make requests against your web API
+app.use(cors());
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
@@ -11,7 +13,6 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // GET "/"
 app.get("/", (req, res) => {
-  // res.send({ express: "Your Backend Service is Running" });
   res.send(videos);
 });
 
