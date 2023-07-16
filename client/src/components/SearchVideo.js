@@ -15,26 +15,20 @@ function SearchVideo({ videos, setVideos }) {
   }
   return (
     <>
-      <div className="search-box">
+      <div class="input-group rounded" id="search">
         <input
-          className="search-input"
-          name="search-input"
-          type="text"
-          placeholder="Search here"
+          type="search"
+          class="form-control rounded"
+          placeholder="Search"
+          aria-label="Search"
+          aria-describedby="search-addon"
           onChange={(e) => {
             handleSearch(e);
           }}
         />
-        <FaSearch
-          style={{
-            color: "black",
-            fontSize: "20px",
-            marginBottom: "8px",
-            backgroundColor: "#aac3dc",
-            height: "26px",
-            marginTop: "3px",
-          }}
-        />
+        <span class="input-group-text border-0">
+          <FaSearch />
+        </span>
       </div>
     </>
   );

@@ -19,7 +19,7 @@ function ViewOneVideo(setVideos) {
         {oneVideo.map((elem, key) => {
           return (
             <div key={elem.id}>
-              <p>{elem.title}</p>
+              <p style={{ color: "#093e43" }}>{elem.title}</p>
               <div style={{ height: "30rem" }}>
                 <ReactPlayer
                   url={elem.url}
@@ -30,7 +30,7 @@ function ViewOneVideo(setVideos) {
           );
         })}
       </article>
-      <Link to="/" className="btn btn-primary">
+      <Link to="/" className="btn btn-secundary">
         back home
       </Link>
     </div>

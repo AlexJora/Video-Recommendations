@@ -3,14 +3,11 @@ import { FaSort } from "react-icons/fa";
 import { useGlobalContext } from "../context/VideoContext";
 function SortByRating({ handleSort }) {
   return (
-    <div
-      className="sort"
-      style={{ width: "10rem", textAlign: "center", margin: "auto" }}
-    >
+    <div className="sort">
       <div>
-        Rating
+        Sort by rating
         <FaSort
-          style={{ color: "blue", fontSize: "40px" }}
+          style={{ color: "#093e43", fontSize: "40px" }}
           onClick={handleSort}
         />
       </div>
