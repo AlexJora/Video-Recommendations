@@ -30,7 +30,13 @@ export const reducer = (state, action) => {
         ...state,
         videos: [...state.videos, action.payload],
       };
-
+    case "SEARCH_VIDEO":
+      return {
+        ...state,
+        videos: state.videos.filter((video) =>
+          video.title.toLowerCase().includes(action.payload)
+        ),
+      };
     default:
       return state;
   }

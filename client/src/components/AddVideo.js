@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 
 function AddVideo() {
   const [showForm, setShowForm] = useState(false);
-  const { dispatch } = useGlobalContext();
+  const { videos, dispatch } = useGlobalContext();
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [titleErr, setTitleErr] = useState({});
@@ -62,8 +62,8 @@ function AddVideo() {
       const newVideo = {
         title,
         url,
-        rating: 0,
-        id: new Date().getTime().toString(),
+        rating: 10,
+        id: videos.length + 1,,
       };
       try {
         dispatch({ type: "SENDING_REQUEST" });
