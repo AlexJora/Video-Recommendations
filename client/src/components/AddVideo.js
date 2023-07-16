@@ -8,7 +8,42 @@ function AddVideo() {
   const { dispatch } = useGlobalContext();
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
+  const [titleErr, setTitleErr] = useState({});
+  const [urlErr, setUrlErr] = useState({});
 
+  const urlValidation = (url) => {
+    const regEx =
+      /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    return regEx.test(url);
+  };
+
+  const formValidation = () => {
+    const titleErr = {};
+    const urlErr = {};
+    let isValid = true;
+    urlValidation();
+
+    if (!title) {
+      titleErr.titleMissing = "add a title";
+      isValid = false;
+    }
+
+    if (!urlValidation(url)) {
+      urlErr.urlWrong = "url not valid";
+      isValid = false;
+    }
+
+    setUrlErr(urlErr);
+    setTitleErr(titleErr);
+    return isValid;
+  };
+
+  const handleHideTitleErr = () => {
+    setTitleErr("");
+  };
+  const handleHideUrlErr = () => {
+    setUrlErr("");
+  };
   const titleRef = useRef(null);
   const urlRef = useRef(null);
 
@@ -20,7 +55,8 @@ function AddVideo() {
   //post one video
   const handleAdd = async (e) => {
     e.preventDefault();
-    if (title && url) {
+    const isValid = formValidation();
+    if (isValid) {
       const newVideo = {
         title,
         url,
@@ -55,6 +91,32 @@ function AddVideo() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          <div>
+            {Object.keys(titleErr).map((key) => {
+              return (
+                <div
+                  style={{
+                    color: "red",
+                    backgroundColor: "white",
+                    borderRadius: "5px",
+                    width: "10rem",
+                    marginLeft: "31rem",
+                  }}
+                >
+                  {titleErr[key]}
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    onClick={handleHideTitleErr}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
         </div>
         <div>
           <label htmlFor="url">URL</label>
@@ -66,6 +128,33 @@ function AddVideo() {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
           />
+          <div>
+            {" "}
+            {Object.keys(urlErr).map((key) => {
+              return (
+                <div
+                  style={{
+                    color: "red",
+                    backgroundColor: "white",
+                    borderRadius: "5px",
+                    width: "10rem",
+                    marginLeft: "31rem",
+                  }}
+                >
+                  {urlErr[key]}
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    onClick={handleHideUrlErr}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
         </div>
         <div className="buttons">
           <button
