@@ -2,9 +2,9 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
-
-function ViewVideo(setVideos) {
-  const [oneVideo, setOneVideo] = useState({});
+import ReactPlayer from "react-player";
+function ViewOneVideo(setVideos) {
+  const [oneVideo, setOneVideo] = useState([]);
   const { id } = useParams();
 
   const getOneVideo = async () => {
@@ -27,7 +27,20 @@ function ViewVideo(setVideos) {
       <h1>Single Post</h1>
       <br />
       <article>
-        <p>{id}</p>
+        {oneVideo.map((elem) => {
+          const { title, url } = elem;
+          return (
+            <>
+              <p>{elem.title}</p>
+              <div style={{ height: "25rem" }}>
+                <ReactPlayer
+                  url={elem.url}
+                  style={{ marginLeft: "20rem", marginTop: "2rem" }}
+                />
+              </div>
+            </>
+          );
+        })}
       </article>
       <Link to="/" className="btn btn-primary">
         back home
@@ -35,4 +48,4 @@ function ViewVideo(setVideos) {
     </div>
   );
 }
-export default ViewVideo;
+export default ViewOneVideo;
