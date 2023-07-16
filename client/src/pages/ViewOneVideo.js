@@ -1,44 +1,32 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios";
 import ReactPlayer from "react-player";
+import { useGlobalContext } from "../context/VideoContext";
+
 function ViewOneVideo(setVideos) {
-  const [oneVideo, setOneVideo] = useState([]);
+  const { getOneVideo, oneVideo } = useGlobalContext();
   const { id } = useParams();
 
-  const getOneVideo = async () => {
-    try {
-      const response = await axios.get(`/api/videos/${id}`);
-      console.log(response.data);
-      setOneVideo(response.data);
-    } catch (error) {
-      console.error("Failure!");
-      console.error(error.response.status);
-    }
-  };
-
   useEffect(() => {
-    getOneVideo();
+    getOneVideo(id);
   }, [id]);
 
   return (
     <div className="view-video">
-      <h1>Single Post</h1>
       <br />
       <article>
-        {oneVideo.map((elem) => {
-          const { title, url } = elem;
+        {oneVideo.map((elem, key) => {
           return (
-            <>
+            <div key={elem.id}>
               <p>{elem.title}</p>
-              <div style={{ height: "25rem" }}>
+              <div style={{ height: "30rem" }}>
                 <ReactPlayer
                   url={elem.url}
-                  style={{ marginLeft: "20rem", marginTop: "2rem" }}
+                  style={{ marginLeft: "10rem", marginTop: "4rem" }}
                 />
               </div>
-            </>
+            </div>
           );
         })}
       </article>

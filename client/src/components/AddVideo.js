@@ -1,36 +1,55 @@
 import React from "react";
-import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
+import { useGlobalContext } from "../context/VideoContext";
+import { useRef } from "react";
 
-function AddVideo({ videos, setVideos }) {
+function AddVideo() {
+  const { dispatch } = useGlobalContext();
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
 
+  const titleRef = useRef(null);
+  const urlRef = useRef(null);
+
+  const handleCancel = () => {
+    titleRef.current.value = "";
+    urlRef.current.value = "";
+  };
+
+  //post one video
   const handleAdd = async (e) => {
-    const id = videos.length + 1;
-    const rating = 0;
-    const newVideo = { title, url, id, rating };
-    try {
-      const response = await axios.post(`/api/videos`, newVideo);
-      console.log(response);
-      setTitle("");
-      setUrl("");
-      console.log("new video added:", newVideo);
-    } catch (error) {
-      console.log(error);
+    e.preventDefault();
+    if (title && url) {
+      const newVideo = {
+        title,
+        url,
+        rating: 0,
+        id: new Date().getTime().toString(),
+      };
+      try {
+        dispatch({ type: "SENDING_REQUEST" });
+        const response = await axios.post(`/api/videos`, newVideo);
+        console.log("new video added:", newVideo);
+        dispatch({ type: "ADD_VIDEO", payload: newVideo });
+        const data = await response.data;
+        console.log(data);
+        dispatch({ type: "REQUEST_FINISHED" });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   return (
     <div className="container">
       <form className="form">
-        <a href="#">Add video</a>
+        <p>ADD VIDEO:</p>
         <div>
           <label htmlFor="title">Title</label>
           <input
             className="input-title"
-            // aria-labelledby="title"
+            ref={titleRef}
             type="text"
             id="title"
             value={title}
@@ -38,10 +57,10 @@ function AddVideo({ videos, setVideos }) {
           />
         </div>
         <div>
-          <label for="url">URL</label>
+          <label htmlFor="url">URL</label>
           <input
             className="input"
-            // aria-labelledby="url"
+            ref={urlRef}
             type="text"
             id="url"
             value={url}
@@ -53,7 +72,7 @@ function AddVideo({ videos, setVideos }) {
             className="cancel"
             type="cancel"
             aria-label="cancel added video"
-            onClick={() => setVideos(videos)}
+            onClick={handleCancel}
           >
             Cancel
           </button>

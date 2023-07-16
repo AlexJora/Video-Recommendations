@@ -6,7 +6,10 @@ import YouTubeEmbed from "./YouTubeEmbed";
 import "bootstrap/dist/css/bootstrap.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-function Video({ video, handleDelete }) {
+import { useGlobalContext } from "../context/VideoContext";
+
+function Video({ video }) {
+  const { handleDelete } = useGlobalContext();
   const [rate, setRate] = useState(video.rating);
   const handleLikeClick = () => {
     setRate(rate + 1);
