@@ -69,6 +69,7 @@ input {
 }
 
 .search-input {
+  margin-top: 3rem;
   border: none;
   margin-left: 2.5rem;
 }

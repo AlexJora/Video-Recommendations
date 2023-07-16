@@ -1,14 +1,12 @@
 import React from "react";
-
+import { AiFillDelete } from "react-icons/ai";
 function DeleteButton({ handleDelete, id }) {
   return (
-    <button
-      className="p-2 mb-1 bg-danger text-white delete-button"
+    <AiFillDelete
       aria-label="delete video"
+      style={{ color: "white", fontSize: "30px" }}
       onClick={() => handleDelete(id)}
-    >
-      Delete
-    </button>
+    />
   );
 }
 

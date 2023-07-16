@@ -3,21 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
 import axios from "axios";
 
-function AddAndSearch({ videos, setVideos }) {
-  //SEARCH
-  const [search, setSearch] = useState("");
-
-  function handleSearch(e) {
-    e.preventDefault();
-    const searchInput = e.target.value.toLowerCase();
-    setSearch(searchInput);
-    const searchFiltered = videos.filter((video) => {
-      return video.title.toLowerCase().includes(searchInput);
-    });
-    setVideos(searchFiltered);
-  }
-
-  //ADD BUTTON
+function AddVideo({ videos, setVideos }) {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
 
@@ -39,28 +25,6 @@ function AddAndSearch({ videos, setVideos }) {
   return (
     <div className="container">
       <form className="form">
-        <div className="search-box">
-          <input
-            className="search-input"
-            name="search-input"
-            type="text"
-            placeholder="Search here"
-            onChange={(e) => {
-              handleSearch(e);
-            }}
-          />
-          <FaSearch
-            style={{
-              color: "black",
-              fontSize: "20px",
-              marginBottom: "8px",
-              backgroundColor: "#aac3dc",
-              height: "26px",
-              marginTop: "3px",
-            }}
-          />
-        </div>
-
         <a href="#">Add video</a>
         <div>
           <label htmlFor="title">Title</label>
@@ -108,4 +72,4 @@ function AddAndSearch({ videos, setVideos }) {
   );
 }
 
-export default AddAndSearch;
+export default AddVideo;
