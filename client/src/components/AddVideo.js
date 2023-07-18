@@ -63,7 +63,7 @@ function AddVideo() {
         title,
         url,
         rating: 10,
-        id: videos.length + 1,,
+        id: videos.length + 1,
       };
       try {
         dispatch({ type: "SENDING_REQUEST" });

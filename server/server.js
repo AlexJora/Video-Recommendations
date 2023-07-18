@@ -7,18 +7,30 @@ app.use(express.json());
 
 const pool = new Pool({
   user: "alexjora",
-  password: "oRhzxyM389lljTDZxwXPoJ7gpPyUNcqf",
-  host: "dpg-cf2i4h1gp3jl0q1tjd0g-a.oregon-postgres.render.com",
+  password: "wtkTK45N2SYaUlX0ANUnAopARTDp8rX6",
+  host: "dpg-cir76bliuie930kscsh0-a.oregon-postgres.render.com",
   port: 5432,
-  database: "videos_xkio",
+  database: "video_c4dd",
   ssl: {
     rejectUnauthorized: false,
   },
 });
 
+app.get("/api/test-db-connection", (req, res) => {
+  pool
+    .query("SELECT 1")
+    .then(() => {
+      console.log("Database connection successful!");
+      res.status(200).json({ message: "Database connection successful!" });
+    })
+    .catch((err) => {
+      console.error("Database connection failed:", err.message);
+      res.status(500).json({ message: "Database connection failed!" });
+    });
+});
 //get all videos
 
-app.get("api/videos", (req, res) => {
+app.get("/api/videos", (req, res) => {
   pool
     .query("SELECT * FROM videos")
     .then((allVideos) => res.json(allVideos.rows))
@@ -30,20 +42,20 @@ app.get("api/videos", (req, res) => {
 
 //get one video by id
 
-app.get("api/videos/:videoId", (req, res) => {
-  const { videoId } = req.params;
+app.get("/api/videos/:videoId", (req, res) => {
+  const videoId = parseInt(req.params.videoId);
   pool
     .query("SELECT * FROM videos WHERE id = $1", [videoId])
     .then((video) => res.json(video.rows))
     .catch((err) => {
-      console.err(err.message);
+      console.log(err.message);
       res.status(500).json(err);
     });
 });
 
 //post a video
 
-app.post("api/videos", (req, res) => {
+app.post("/api/videos", (req, res) => {
   const newTitle = req.body.video_title;
   const newUrl = req.body.video_url;
   const newRating = req.body.video_rating;
@@ -75,7 +87,7 @@ app.post("api/videos", (req, res) => {
 
 //delete a video by id
 
-app.delete("api/videos/:videoId", (req, res) => {
+app.delete("/api/videos/:videoId", (req, res) => {
   const { videoId } = req.params;
   pool
     .query("DELETE FROM videos WHERE id = $1", [videoId])
