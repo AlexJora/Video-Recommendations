@@ -7,15 +7,14 @@ app.use(express.json());
 
 const pool = new Pool({
   user: "alexjora",
-  password: "wtkTK45N2SYaUlX0ANUnAopARTDp8rX6",
-  host: "dpg-cir76bliuie930kscsh0-a.oregon-postgres.render.com",
+  password: "UAMtEmwuCqY3fCUl6VCD8Ez5XECeY6tM",
+  host: "dpg-ck04eg7hdsdc73ccqak0-a.oregon-postgres.render.com",
   port: 5432,
-  database: "video_c4dd",
+  database: "videos_uhgx",
   ssl: {
     rejectUnauthorized: false,
   },
 });
-
 app.get("/api/test-db-connection", (req, res) => {
   pool
     .query("SELECT 1")
@@ -56,9 +55,9 @@ app.get("/api/videos/:videoId", (req, res) => {
 //post a video
 
 app.post("/api/videos", (req, res) => {
-  const newTitle = req.body.video_title;
-  const newUrl = req.body.video_url;
-  const newRating = req.body.video_rating;
+  const newTitle = req.body.title;
+  const newUrl = req.body.url;
+  const newRating = req.body.rating;
 
   if (!Number.isInteger(newRating) || newRating < 0) {
     return res.status(400).send("Rating should be a positive integer.");
@@ -73,7 +72,7 @@ app.post("/api/videos", (req, res) => {
           .send("A video with the same title already exists!");
       } else {
         const query =
-          "INSERT INTO videos (title, url, rating) VALUES ($1, $2, $3, )";
+          "INSERT INTO videos (title, url, rating) VALUES ($1, $2, $3)";
         pool
           .query(query, [newTitle, newUrl, newRating])
           .then(() => res.send("Video created!"))
