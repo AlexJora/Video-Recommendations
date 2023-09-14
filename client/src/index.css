@@ -4,8 +4,8 @@
 }
 header {
   color: #fff;
-  background-color: #025d65;
-  padding: 1rem;
+  background-color: #044349;
+  padding: 1.5rem;
   font-family: "Nunito", sans-serif;
   font-weight: 800;
   margin-bottom: 1rem;
@@ -26,8 +26,8 @@ header {
   margin: 1rem;
   width: 25rem;
   height: fit-content;
-  row-gap: 1rem;
-  background-color: #093e43;
+  row-gap: 5px;
+  background-color: #1d565c;
   border-radius: 10px;
   padding: 10px 0 10px 0;
 }
@@ -102,4 +102,8 @@ h5 {
   font-family: "Nunito", sans-serif;
   font-weight: 900;
   color: #025d65;
+}
+.view-video {
+  background-color: antiquewhite;
+  padding: 2rem;
 }

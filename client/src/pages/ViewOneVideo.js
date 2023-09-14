@@ -10,29 +10,23 @@ function ViewOneVideo(setVideos) {
 
   useEffect(() => {
     getOneVideo(id);
-  }, [id]);
+  }, [id, getOneVideo]);
 
   return (
     <div className="view-video">
-      <br />
       <article>
         {oneVideo.map((elem, key) => {
           return (
             <div key={elem.id}>
               <p style={{ color: "#093e43" }}>{elem.title}</p>
-              <div style={{ height: "30rem" }}>
-                <ReactPlayer
-                  url={elem.url}
-                  style={{ marginLeft: "10rem", marginTop: "4rem" }}
-                />
+              <div style={{ height: "25rem" }}>
+                <ReactPlayer url={elem.url} style={{ margin: "auto" }} />
               </div>
             </div>
           );
         })}
       </article>
-      <Link to="/" className="btn btn-secundary">
-        back home
-      </Link>
+      <Link to="/">Go back</Link>
     </div>
   );
 }

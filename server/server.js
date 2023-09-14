@@ -4,17 +4,18 @@ const cors = require("cors");
 const Pool = require("pg").Pool;
 app.use(cors());
 app.use(express.json());
-
+require("dotenv").config();
 const pool = new Pool({
-  user: "alexjora",
-  password: "UAMtEmwuCqY3fCUl6VCD8Ez5XECeY6tM",
-  host: "dpg-ck04eg7hdsdc73ccqak0-a.oregon-postgres.render.com",
-  port: 5432,
-  database: "videos_uhgx",
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
   ssl: {
     rejectUnauthorized: false,
   },
 });
+
 app.get("/api/test-db-connection", (req, res) => {
   pool
     .query("SELECT 1")

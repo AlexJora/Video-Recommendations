@@ -3,7 +3,7 @@ function AppHeader() {
   return (
     <>
       <header>
-        <h1>Video Recommendation</h1>
+        <h1>Video Recommendations</h1>
       </header>
     </>
   );
