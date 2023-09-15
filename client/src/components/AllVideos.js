@@ -54,9 +54,8 @@ import { useGlobalContext } from "../context/VideoContext";
 
 function AllVideos() {
   const { videos, loading, fetchVideos, handleDelete } = useGlobalContext();
-
   useEffect(() => {
-    fetchVideos();
+    fetchVideos?.();
   }, []);
 
   const [sortBy, setSortBy] = useState("rating");

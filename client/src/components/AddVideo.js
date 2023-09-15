@@ -14,8 +14,7 @@ function AddVideo() {
   const [urlErr, setUrlErr] = useState({});
 
   const urlValidation = (url) => {
-    const regEx =
-      /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
+    const regEx = /^(https?:\/\/)?[\w-]+(\.[\w-]+)+[/#?]?.*$/i;
     return regEx.test(url);
   };
 
