@@ -54,11 +54,12 @@ import { useGlobalContext } from "../context/VideoContext";
 
 function AllVideos() {
   const { videos, loading, fetchVideos, handleDelete } = useGlobalContext();
+
   useEffect(() => {
     fetchVideos?.();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [sortBy, setSortBy] = useState("rating");
   const [direction, setDirection] = useState("ascending");
 
   const sortVideos = (videos, sortBy, direction) => {
@@ -75,7 +76,7 @@ function AllVideos() {
     );
   };
 
-  const sortedVideos = sortVideos(videos, sortBy, direction);
+  const sortedVideos = sortVideos(videos, "rating", direction);
 
   return (
     <>
