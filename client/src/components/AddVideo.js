@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useGlobalContext } from "../context/VideoContext";
 import { useRef } from "react";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 
 function AddVideo() {
   const [showForm, setShowForm] = useState(false);
@@ -81,14 +81,14 @@ function AddVideo() {
 
   return (
     <div className="form-container">
-      <Button
+      <button
         variant="outlined"
         color="secondary"
         size="large"
         onClick={() => setShowForm(!showForm)}
       >
         add video
-      </Button>
+      </button>
       <div>
         {showForm && (
           <form className="form-group" id="form">
@@ -152,15 +152,15 @@ function AddVideo() {
               })}
             </div>
             <div className="buttons">
-              <Button
+              <button
                 variant="contained"
                 aria-label="cancel added video"
                 onClick={handleCancel}
               >
                 Cancel
-              </Button>
+              </button>
               <span> </span>
-              <Button
+              <button
                 variant="contained"
                 type="submit"
                 autoComplete="on"
@@ -168,7 +168,7 @@ function AddVideo() {
                 onClick={handleAdd}
               >
                 Add
-              </Button>
+              </button>
             </div>
           </form>
         )}

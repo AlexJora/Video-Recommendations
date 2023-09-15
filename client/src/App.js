@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import ViewVideo from "./pages/ViewOneVideo";
-import Error from "./pages/Error";
 import ViewOneVideo from "./pages/ViewOneVideo";
+import Error from "./pages/Error";
+
 function App() {
   return (
     <div className="App">

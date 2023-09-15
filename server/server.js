@@ -35,7 +35,7 @@ app.get("/api/videos", (req, res) => {
     .query("SELECT * FROM videos")
     .then((allVideos) => res.json(allVideos.rows))
     .catch((err) => {
-      console.err(err.message);
+      console.log(err.message);
       res.status(500).json(err);
     });
 });
