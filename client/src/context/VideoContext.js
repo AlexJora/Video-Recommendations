@@ -15,6 +15,7 @@ const defaultState = {
   loading: true,
   search: "",
 };
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const VideosContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, defaultState);
@@ -30,7 +31,7 @@ export const VideosContextProvider = ({ children }) => {
   const fetchVideos = async () => {
     try {
       dispatch({ type: "SENDING_REQUEST" });
-      const response = await axios.get("/api/videos");
+      const response = await axios.get(`${apiUrl}/api/videos`);
       const data = await response.data;
       dispatch({ type: "REQUEST_FINISHED" });
       dispatch({ type: "GET_VIDEOS", payload: data });
@@ -44,7 +45,7 @@ export const VideosContextProvider = ({ children }) => {
   const getOneVideo = async (id) => {
     try {
       dispatch({ type: "SENDING_REQUEST" });
-      const response = await axios.get(`/api/videos/${id}`);
+      const response = await axios.get(`${apiUrl}/api/videos/${id}`);
       const data = await response.data;
       dispatch({ type: "REQUEST_FINISHED" });
       dispatch({ type: "GET_VIDEO", payload: data });
@@ -58,7 +59,7 @@ export const VideosContextProvider = ({ children }) => {
   const handleDelete = async (id) => {
     try {
       dispatch({ type: "SENDING_REQUEST" });
-      const response = await axios.delete(`/api/videos/${id}`);
+      const response = await axios.delete(`${apiUrl}/api/videos/${id}`);
       const data = await response.data;
       console.log(data);
       dispatch({ type: "REQUEST_FINISHED" });

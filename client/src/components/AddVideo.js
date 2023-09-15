@@ -3,8 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useGlobalContext } from "../context/VideoContext";
 import { useRef } from "react";
-// import Button from "@material-ui/core/Button";
-
+const apiUrl = process.env.REACT_APP_API_URL;
 function AddVideo() {
   const [showForm, setShowForm] = useState(false);
   const { videos, dispatch } = useGlobalContext();
@@ -66,12 +65,16 @@ function AddVideo() {
       };
       try {
         dispatch({ type: "SENDING_REQUEST" });
-        const response = await axios.post(`/api/videos`, newVideo);
+        const response = await axios.post(`${apiUrl}/api/videos`, newVideo);
         console.log("new video added:", newVideo);
         dispatch({ type: "ADD_VIDEO", payload: newVideo });
         const data = await response.data;
         console.log(data);
         dispatch({ type: "REQUEST_FINISHED" });
+        setTitle("");
+        setUrl("");
+        setTitleErr({});
+        setUrlErr({});
       } catch (error) {
         console.log(error);
       }
