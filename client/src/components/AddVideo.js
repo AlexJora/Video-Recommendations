@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useGlobalContext } from "../context/VideoContext";
 import { useRef } from "react";
-const apiUrl = process.env.REACT_APP_API_URL;
+
 function AddVideo() {
   const [showForm, setShowForm] = useState(false);
   const { videos, dispatch } = useGlobalContext();
@@ -65,7 +65,10 @@ function AddVideo() {
       };
       try {
         dispatch({ type: "SENDING_REQUEST" });
-        const response = await axios.post(`${apiUrl}/api/videos`, newVideo);
+        const response = await axios.post(
+          `https://v-r2.onrender.com/api/videos`,
+          newVideo
+        );
         console.log("new video added:", newVideo);
         dispatch({ type: "ADD_VIDEO", payload: newVideo });
         const data = await response.data;

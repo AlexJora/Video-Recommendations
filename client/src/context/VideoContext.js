@@ -30,7 +30,7 @@ export const VideosContextProvider = ({ children }) => {
   const fetchVideos = async () => {
     try {
       dispatch({ type: "SENDING_REQUEST" });
-      const response = await axios.get(`/api/videos`);
+      const response = await axios.get(`https://v-r2.onrender.com/api/videos`);
       const data = await response.data;
       dispatch({ type: "REQUEST_FINISHED" });
       dispatch({ type: "GET_VIDEOS", payload: data });
@@ -44,7 +44,9 @@ export const VideosContextProvider = ({ children }) => {
   const getOneVideo = async (id) => {
     try {
       dispatch({ type: "SENDING_REQUEST" });
-      const response = await axios.get(`/api/videos/${id}`);
+      const response = await axios.get(
+        `https://v-r2.onrender.com/api/videos/${id}`
+      );
       const data = await response.data;
       dispatch({ type: "REQUEST_FINISHED" });
       dispatch({ type: "GET_VIDEO", payload: data });
@@ -58,7 +60,9 @@ export const VideosContextProvider = ({ children }) => {
   const handleDelete = async (id) => {
     try {
       dispatch({ type: "SENDING_REQUEST" });
-      const response = await axios.delete(`/api/videos/${id}`);
+      const response = await axios.delete(
+        `https://v-r2.onrender.com/api/videos/${id}`
+      );
       const data = await response.data;
       console.log(data);
       dispatch({ type: "REQUEST_FINISHED" });
