@@ -1,6 +1,5 @@
 {
   "name": "client",
-  "homepage": "/my-app",
   "version": "0.1.0",
   "private": true,
   "proxy": "https://v-r2.onrender.com",
