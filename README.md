@@ -7,9 +7,11 @@
 This project is a simple CRUD application built with the PERN stack (PostgreSQL, Express, React, and Node).
 
 ## Screenshots
-![App1](https://raw.githubusercontent.com/AlexJora/Video-Recommendations/main/public/app1.jpg)
-![App2](https://raw.githubusercontent.com/AlexJora/Video-Recommendations/main/public/app2.jpg)
-![App3](https://raw.githubusercontent.com/AlexJora/Video-Recommendations/main/public/app3.jpg)
+![app1](https://github.com/AlexJora/Video-Recommendations/assets/102957717/9c1e662e-7514-40c9-85bd-040333fd758f)
+![app2](https://github.com/AlexJora/Video-Recommendations/assets/102957717/640667fe-b9ff-4de0-9743-dde0a2b08fd5)
+![app3](https://github.com/AlexJora/Video-Recommendations/assets/102957717/090b132c-f582-44a4-86fe-10ae0d5629a6)
+
+
 
 ## Table of Contents
 
