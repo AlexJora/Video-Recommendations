@@ -4,18 +4,23 @@ import { useParams, Link } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { useGlobalContext } from "../context/VideoContext";
 
-function ViewOneVideo(setVideos) {
+function ViewOneVideo({ setVideos }) {
   const { getOneVideo, oneVideo } = useGlobalContext();
   const { id } = useParams();
 
   useEffect(() => {
-    getOneVideo(id);
+    console.log("useEffect is running");
+    if (id) {
+      console.log("Calling getOneVideo with id:", id);
+      getOneVideo(id);
+    }
   }, [id, getOneVideo]);
-
+  console.log("Rendering ViewOneVideo, oneVideo:", oneVideo);
   return (
     <div className="view-video">
       <article>
         {oneVideo.map((elem, key) => {
+          console.log("Rendering video element with id:", elem.id);
           return (
             <div key={elem.id}>
               <p style={{ color: "#093e43" }}>{elem.title}</p>
