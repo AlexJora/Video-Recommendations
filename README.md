@@ -99,7 +99,7 @@ To run the frontend only:
 cd client
 npm run start
 ```
-**6. Building & Deployment**
+- Building & Deployment
 To create a production build of the frontend, navigate to the frontend directory and run:
 ```dotenv
 cd client
