@@ -4,23 +4,13 @@ const cors = require("cors");
 const Pool = require("pg").Pool;
 app.use(cors());
 app.use(express.json());
-// require("dotenv").config();
-// const pool = new Pool({
-//   user: process.env.DB_USER,
-//   password: process.env.DB_PASSWORD,
-//   host: process.env.DB_HOST,
-//   port: process.env.DB_PORT,
-//   database: process.env.DB_NAME,
-//   ssl: {
-//     rejectUnauthorized: false,
-//   },
-// });
+require("dotenv").config();
 const pool = new Pool({
-  user: "alex",
-  password: "oAwLTKLeeD4ZTmXmtlNKBsbZTofJsI5y",
-  host: "dpg-cnm6onmd3nmc73arf5i0-a.oregon-postgres.render.com",
-  port: 5432,
-  database: "videosdb_tdc6",
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
   ssl: {
     rejectUnauthorized: false,
   },
