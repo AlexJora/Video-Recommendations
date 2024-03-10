@@ -27,7 +27,7 @@ header {
   width: 25rem;
   height: fit-content;
   row-gap: 5px;
-  background-color: #1d565c;
+  border: #fff solid 1px;
   border-radius: 10px;
   padding: 10px 0 10px 0;
 }

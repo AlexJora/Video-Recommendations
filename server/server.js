@@ -4,13 +4,23 @@ const cors = require("cors");
 const Pool = require("pg").Pool;
 app.use(cors());
 app.use(express.json());
-require("dotenv").config();
+// require("dotenv").config();
+// const pool = new Pool({
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   host: process.env.DB_HOST,
+//   port: process.env.DB_PORT,
+//   database: process.env.DB_NAME,
+//   ssl: {
+//     rejectUnauthorized: false,
+//   },
+// });
 const pool = new Pool({
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DB_NAME,
+  user: "alex",
+  password: "oAwLTKLeeD4ZTmXmtlNKBsbZTofJsI5y",
+  host: "dpg-cnm6onmd3nmc73arf5i0-a.oregon-postgres.render.com",
+  port: 5432,
+  database: "videosdb_tdc6",
   ssl: {
     rejectUnauthorized: false,
   },
@@ -32,7 +42,7 @@ app.get("/api/test-db-connection", (req, res) => {
 
 app.get("/api/videos", (req, res) => {
   pool
-    .query("SELECT * FROM videos")
+    .query("SELECT * FROM video1")
     .then((allVideos) => res.json(allVideos.rows))
     .catch((err) => {
       console.log(err.message);
@@ -45,7 +55,7 @@ app.get("/api/videos", (req, res) => {
 app.get("/api/videos/:videoId", (req, res) => {
   const videoId = parseInt(req.params.videoId);
   pool
-    .query("SELECT * FROM videos WHERE id = $1", [videoId])
+    .query("SELECT * FROM video1 WHERE id = $1", [videoId])
     .then((video) => res.json(video.rows))
     .catch((err) => {
       console.log(err.message);
@@ -65,7 +75,7 @@ app.post("/api/videos", (req, res) => {
   }
 
   pool
-    .query("SELECT * FROM videos WHERE title=$1", [newTitle])
+    .query("SELECT * FROM video1 WHERE title=$1", [newTitle])
     .then((result) => {
       if (result.rows.length > 0) {
         return res
@@ -73,7 +83,7 @@ app.post("/api/videos", (req, res) => {
           .send("A video with the same title already exists!");
       } else {
         const query =
-          "INSERT INTO videos (title, url, rating) VALUES ($1, $2, $3)";
+          "INSERT INTO video1 (title, url, rating) VALUES ($1, $2, $3)";
         pool
           .query(query, [newTitle, newUrl, newRating])
           .then(() => res.send("Video created!"))
@@ -90,7 +100,7 @@ app.post("/api/videos", (req, res) => {
 app.delete("/api/videos/:videoId", (req, res) => {
   const { videoId } = req.params;
   pool
-    .query("DELETE FROM videos WHERE id = $1", [videoId])
+    .query("DELETE FROM video1 WHERE id = $1", [videoId])
     .then(() => res.send(`Video with id ${videoId} deleted!`))
     .catch((err) => {
       console.log(err.message);

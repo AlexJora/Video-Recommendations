@@ -19,7 +19,7 @@ function Video({ video }) {
   };
 
   return (
-    <div className="video-container">
+    <div className="video-container p-4">
       <p>{video.title}</p>
       <div className="vote-container">
         <LikeIcon handleLikeClick={handleLikeClick} />
