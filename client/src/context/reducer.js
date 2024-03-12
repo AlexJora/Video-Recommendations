@@ -5,6 +5,18 @@ export const reducer = (state, action) => {
         ...state,
         videos: action.payload,
       };
+    case "SORT_VIDEOS":
+      const direction = action.payload.direction;
+      const sortedVideos = [...state.videos].sort((a, b) => {
+        if (a.rating < b.rating) return direction === "ascending" ? -1 : 1;
+        if (a.rating > b.rating) return direction === "ascending" ? 1 : -1;
+        return 0;
+      });
+      return {
+        ...state,
+        videos: sortedVideos,
+      };
+
     case "GET_VIDEO":
       return {
         ...state,

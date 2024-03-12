@@ -85,16 +85,16 @@ function AddVideo() {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-container ps-5">
       <button
-        variant="outlined"
-        color="secondary"
-        size="large"
+        type="button"
+        className="btn btn-light btn-md"
+        aria-label="add video"
         onClick={() => setShowForm(!showForm)}
       >
-        add video
+        Add a video
       </button>
-      <div>
+      <div className="pt-5">
         {showForm && (
           <form className="form-group" id="form">
             <div>
@@ -158,7 +158,8 @@ function AddVideo() {
             </div>
             <div className="buttons">
               <button
-                variant="contained"
+                type="button"
+                className="btn btn-light"
                 aria-label="cancel added video"
                 onClick={handleCancel}
               >
@@ -166,7 +167,7 @@ function AddVideo() {
               </button>
               <span> </span>
               <button
-                variant="contained"
+                className="btn btn-light"
                 type="submit"
                 autoComplete="on"
                 aria-label="add new video"

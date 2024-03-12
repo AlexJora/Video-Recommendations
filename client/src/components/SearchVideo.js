@@ -6,7 +6,7 @@ function SearchVideo({ videos, setVideos }) {
   const { handleSearch } = useGlobalContext();
   return (
     <>
-      <div className="input-group rounded" id="search">
+      <div className="input-group rounded w-25 h-25 pe-5" id="search">
         <input
           type="search"
           className="form-control rounded"

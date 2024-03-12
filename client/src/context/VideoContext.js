@@ -38,7 +38,10 @@ export const VideosContextProvider = ({ children }) => {
       console.log(error.response.status);
     }
   };
-
+  // sort videos
+  const handleSort = (direction) => {
+    dispatch({ type: "SORT_VIDEOS", payload: { direction } });
+  };
   // get video by id
 
   const getOneVideo = async (id) => {
@@ -79,6 +82,7 @@ export const VideosContextProvider = ({ children }) => {
         getOneVideo,
         handleDelete,
         handleSearch,
+        handleSort,
         dispatch,
         ...state,
       }}
