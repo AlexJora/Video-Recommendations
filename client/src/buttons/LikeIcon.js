@@ -1,6 +1,6 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { AiFillLike } from "react-icons/ai";
+
 function LikeIcon({ handleLikeClick }) {
   return (
     <button
@@ -8,7 +8,7 @@ function LikeIcon({ handleLikeClick }) {
       onClick={() => handleLikeClick()}
       style={{ backgroundColor: "transparent", color: "white", border: "none" }}
     >
-      <FontAwesomeIcon icon={faThumbsUp} />
+      <AiFillLike />
     </button>
   );
 }

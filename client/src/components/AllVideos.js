@@ -7,9 +7,7 @@ function AllVideos() {
   const { videos, loading, fetchVideos, handleDelete } = useGlobalContext();
 
   useEffect(() => {
-    if (fetchVideos) {
-      fetchVideos();
-    }
+    fetchVideos?.();
   }, []);
 
   const [direction, setDirection] = useState("ascending");
