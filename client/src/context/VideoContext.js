@@ -63,9 +63,7 @@ export const VideosContextProvider = ({ children }) => {
   const handleDelete = async (id) => {
     try {
       dispatch({ type: "SENDING_REQUEST" });
-      const response = await axios.delete(
-        `https://v-r2.onrender.com/api/videos/${id}`
-      );
+      const response = await axios.delete(`/api/videos/${id}`);
       const data = await response.data;
       console.log(data);
       dispatch({ type: "REQUEST_FINISHED" });

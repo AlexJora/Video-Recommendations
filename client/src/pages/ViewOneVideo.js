@@ -26,7 +26,9 @@ function ViewOneVideo() {
           </div>
         )}
       </article>
-      <Link to="/">Go back</Link>
+      <Link to="/" className="btn btn-secondary">
+        Go back
+      </Link>
     </div>
   );
 }

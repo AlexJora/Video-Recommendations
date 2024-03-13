@@ -27,7 +27,9 @@ function Video({ video }) {
         <DislikeIcon handleDislikeClick={handleDislikeClick} />
       </div>
       <YouTubeEmbed video={video} />
-      <DeleteButton handleDelete={handleDelete} id={video.id} />
+      <div className="py-3">
+        <DeleteButton handleDelete={handleDelete} id={video.id} />
+      </div>
       <Link to={`post/${video.id}`} className="btn btn-secondary btn-details">
         View Video
       </Link>
