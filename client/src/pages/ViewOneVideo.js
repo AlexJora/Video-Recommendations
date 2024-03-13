@@ -1,35 +1,30 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import ReactPlayer from "react-player";
+import ReactPlayer from "react-player/youtube";
 import { useGlobalContext } from "../context/VideoContext";
 
-function ViewOneVideo({ setVideos }) {
-  const { getOneVideo, oneVideo } = useGlobalContext();
+function ViewOneVideo() {
   const { id } = useParams();
+  const { getOneVideo, oneVideo } = useGlobalContext();
+  const [hasFetched, setHasFetched] = useState(false);
 
   useEffect(() => {
-    console.log("useEffect is running");
-    if (id) {
-      console.log("Calling getOneVideo with id:", id);
+    if (!hasFetched && id && (!oneVideo || oneVideo.id !== id)) {
       getOneVideo(id);
+      setHasFetched(true);
     }
-  }, [id, getOneVideo]);
-  console.log("Rendering ViewOneVideo, oneVideo:", oneVideo);
+  }, [id, getOneVideo, oneVideo]);
   return (
     <div className="view-video">
       <article>
-        {oneVideo.map((elem, key) => {
-          console.log("Rendering video element with id:", elem.id);
-          return (
-            <div key={elem.id}>
-              <p style={{ color: "#093e43" }}>{elem.title}</p>
-              <div style={{ height: "25rem" }}>
-                <ReactPlayer url={elem.url} style={{ margin: "auto" }} />
-              </div>
+        {oneVideo && (
+          <div>
+            <p className="pb-4 text-light fs-5">{oneVideo.title}</p>
+            <div style={{ height: "25rem" }}>
+              <ReactPlayer url={oneVideo.url} style={{ margin: "auto" }} />
             </div>
-          );
-        })}
+          </div>
+        )}
       </article>
       <Link to="/">Go back</Link>
     </div>

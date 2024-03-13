@@ -1,12 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
 import { useGlobalContext } from "../context/VideoContext";
 import { useRef } from "react";
 
 function AddVideo() {
   const [showForm, setShowForm] = useState(false);
-  const { videos, dispatch } = useGlobalContext();
+  const { videos, dispatch, postVideo } = useGlobalContext();
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [titleErr, setTitleErr] = useState({});
@@ -63,24 +62,25 @@ function AddVideo() {
         rating: 10,
         id: videos.length + 1,
       };
-      try {
-        dispatch({ type: "SENDING_REQUEST" });
-        const response = await axios.post(
-          `https://v-r2.onrender.com/api/videos`,
-          newVideo
-        );
-        console.log("new video added:", newVideo);
-        dispatch({ type: "ADD_VIDEO", payload: newVideo });
-        const data = await response.data;
-        console.log(data);
-        dispatch({ type: "REQUEST_FINISHED" });
-        setTitle("");
-        setUrl("");
-        setTitleErr({});
-        setUrlErr({});
-      } catch (error) {
-        console.log(error);
-      }
+      // try {
+      //   dispatch({ type: "SENDING_REQUEST" });
+      //   const response = await axios.post(
+      //     `https://v-r2.onrender.com/api/videos`,
+      //     newVideo
+      //   );
+      //   console.log("new video added:", newVideo);
+      //   dispatch({ type: "ADD_VIDEO", payload: newVideo });
+      //   const data = await response.data;
+      //   console.log(data);
+      //   dispatch({ type: "REQUEST_FINISHED" });
+      //   setTitle("");
+      //   setUrl("");
+      //   setTitleErr({});
+      //   setUrlErr({});
+      // } catch (error) {
+      //   console.log(error);
+      // }
+      postVideo(newVideo);
     }
   };
 

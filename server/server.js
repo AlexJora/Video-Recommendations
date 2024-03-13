@@ -46,7 +46,9 @@ app.get("/api/videos/:videoId", (req, res) => {
   const videoId = parseInt(req.params.videoId);
   pool
     .query("SELECT * FROM video1 WHERE id = $1", [videoId])
-    .then((video) => res.json(video.rows))
+    .then((video) => {
+      res.json(video.rows[0]);
+    })
     .catch((err) => {
       console.log(err.message);
       res.status(500).json(err);

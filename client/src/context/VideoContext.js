@@ -11,7 +11,7 @@ export const useGlobalContext = () => {
 
 const defaultState = {
   videos: [],
-  oneVideo: [],
+  oneVideo: {},
   loading: true,
   search: "",
 };
@@ -25,8 +25,6 @@ export const VideosContextProvider = ({ children }) => {
     dispatch({ type: "SEARCH_VIDEO", payload: searchInput });
   }
 
-  //get all videos
-
   const fetchVideos = async () => {
     try {
       dispatch({ type: "SENDING_REQUEST" });
@@ -35,9 +33,14 @@ export const VideosContextProvider = ({ children }) => {
       dispatch({ type: "REQUEST_FINISHED" });
       dispatch({ type: "GET_VIDEOS", payload: data });
     } catch (error) {
-      console.log(error.response.status);
+      if (error.response) {
+        console.log(error.response.status);
+      } else {
+        console.log("Request failed:", error.message);
+      }
     }
   };
+
   // sort videos
   const handleSort = (direction) => {
     dispatch({ type: "SORT_VIDEOS", payload: { direction } });
@@ -52,10 +55,9 @@ export const VideosContextProvider = ({ children }) => {
       dispatch({ type: "REQUEST_FINISHED" });
       dispatch({ type: "GET_VIDEO", payload: data });
     } catch (error) {
-      console.log(error.response.status);
+      console.log(error.response ? error.response.status : "Unknown error");
     }
   };
-
   //delete video by id
 
   const handleDelete = async (id) => {
@@ -75,6 +77,19 @@ export const VideosContextProvider = ({ children }) => {
     }
   };
 
+  const postVideo = async (newVideo) => {
+    try {
+      dispatch({ type: "SENDING_REQUEST" });
+      const response = await axios.post(`/api/videos`, newVideo);
+      const data = await response.data;
+      dispatch({ type: "REQUEST_FINISHED" });
+      dispatch({ type: "ADD_VIDEO", payload: data });
+      console.log("Video added successfully:", data);
+    } catch (error) {
+      console.log("Error adding video:", error);
+    }
+  };
+
   return (
     <VideosContext.Provider
       value={{
@@ -83,6 +98,7 @@ export const VideosContextProvider = ({ children }) => {
         handleDelete,
         handleSearch,
         handleSort,
+        postVideo,
         dispatch,
         ...state,
       }}

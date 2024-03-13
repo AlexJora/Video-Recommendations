@@ -76,10 +76,6 @@ p {
 }
 .sort {
   width: 10rem;
-  /* text-align: center; */
-  /* margin: auto;
-  margin-top: 2rem;
-  margin-bottom: 2rem; */
   font-family: "Nunito", sans-serif;
   font-weight: 800;
   color: #fff;
@@ -88,9 +84,10 @@ p {
 h5 {
   font-family: "Nunito", sans-serif;
   font-weight: 900;
-  color: #025d65;
+  color: #fff;
 }
 .view-video {
-  background-color: antiquewhite;
   padding: 2rem;
+  background-color: black;
+  height: 100vh;
 }

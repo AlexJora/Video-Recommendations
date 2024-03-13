@@ -11,6 +11,7 @@ function App() {
         <Routes>
           <Route exact index element={<Home />} />
           <Route path="/post/:id" element={<ViewOneVideo />} />
+
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

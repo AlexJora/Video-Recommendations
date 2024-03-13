@@ -6,6 +6,7 @@ function AllVideos() {
   const { videos, loading, fetchVideos, handleDelete } = useGlobalContext();
 
   useEffect(() => {
+    console.log("Fetching all videos...");
     fetchVideos?.();
   }, []);
 
